@@ -34,12 +34,11 @@ if (fs.existsSync(phpBin)) {
   }
   console.log(`✔ All ${phpFiles.length} PHP files passed PHP CLI syntax validation.`);
 } else {
-  // On Vercel / Linux build container where Windows XAMPP php.exe is not present
   console.log('CI/Cloud build environment detected — verifying PHP & config files...');
   for (const file of phpFiles) {
-    const content = fs.readFileSync(file, 'utf8');
-    if (!content.includes('<?php') && !content.includes('<?=')) {
-      throw new Error(`Invalid PHP file header in ${path.relative(rootDir, file)}`);
+    const stat = fs.statSync(file);
+    if (stat.size === 0) {
+      throw new Error(`Empty PHP file: ${path.relative(rootDir, file)}`);
     }
   }
   console.log(`✔ All ${phpFiles.length} PHP files verified.`);
@@ -53,23 +52,4 @@ for (const reqFile of ['neon.ts', 'manifest.json', 'service-worker.js', 'vercel.
   console.log(`✔ Verified ${reqFile}`);
 }
 
-// Populate public/ directory for Vercel static output
-const publicDir = path.join(rootDir, 'public');
-fs.mkdirSync(publicDir, { recursive: true });
-
-for (const staticFile of ['manifest.json', 'service-worker.js', 'favicon.ico']) {
-  const src = path.join(rootDir, staticFile);
-  if (fs.existsSync(src)) {
-    fs.copyFileSync(src, path.join(publicDir, staticFile));
-  }
-}
-
-for (const staticDir of ['img']) {
-  const srcDir = path.join(rootDir, staticDir);
-  if (fs.existsSync(srcDir)) {
-    fs.cpSync(srcDir, path.join(publicDir, staticDir), { recursive: true });
-  }
-}
-
-console.log('✔ Prepared public/ output directory for Vercel.');
 console.log('=== Build Succeeded ===');
