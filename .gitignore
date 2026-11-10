@@ -7,11 +7,13 @@
 .neon
 .vercel
 
-# Node dependencies & local CLI config (excluded from Vercel PHP builder)
+# Node & Composer config (excluded from git so vercel-php uses pre-bundled vendor/ without spawning composer on AL2023)
 /node_modules/
 /public/
 package.json
 package-lock.json
+composer.json
+composer.lock
 neon.ts
 
 # Runtime / temporary files
