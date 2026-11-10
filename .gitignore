@@ -7,8 +7,9 @@
 .neon
 .vercel
 
-# Node dependencies
+# Node dependencies & build output
 /node_modules/
+/public/
 
 # Runtime / temporary files
 database/.db_healthy_flag
