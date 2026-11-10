@@ -7,9 +7,12 @@
 .neon
 .vercel
 
-# Node dependencies & build output
+# Node dependencies & local CLI config (excluded from Vercel PHP builder)
 /node_modules/
 /public/
+package.json
+package-lock.json
+neon.ts
 
 # Runtime / temporary files
 database/.db_healthy_flag
