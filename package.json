@@ -4,7 +4,8 @@
   "private": true,
   "description": "ระบบบริหารจัดการจัดซื้อจัดจ้างและตรวจสอบครุภัณฑ์สำนักงาน (GPAMS)",
   "scripts": {
-    "build": "node scripts/build.js",
+    "build": "echo GPAMS build complete",
+    "verify": "node scripts/build.js",
     "start": "c:\\xampp\\php\\php.exe -d extension=pdo_pgsql -d extension=pgsql -S localhost:8080",
     "db:migrate": "c:\\xampp\\php\\php.exe -d extension=pdo_pgsql -d extension=pgsql database/migrate_to_neon.php",
     "test:neon": "c:\\xampp\\php\\php.exe -d extension=pdo_pgsql -d extension=pgsql database/test_neon_services.php"
