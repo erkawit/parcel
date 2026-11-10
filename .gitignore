@@ -1,0 +1,26 @@
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# Neon & Vercel local context
+.neon
+.vercel
+
+# Node dependencies
+/node_modules/
+
+# Runtime / temporary files
+database/.db_healthy_flag
+database/asset_management_db_2026-02-10.sql
+database/asset_management_db_2026-02-11.sql
+database/asset_management_db_2026-02-13.sql
+database/asset_management_db_2026-02-15.sql
+templates/word_jobs/*.docx
+gitlog.txt
+
+# OS & IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
